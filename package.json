@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hiveio/dhive": "^1.2.5",
+    "@next/font": "13.1.3",
+    "clsx": "^1.2.1",
+    "intersection-observer": "^0.12.2",
+    "next": "13.1.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-fast-marquee": "^1.3.5",
+    "react-player": "^2.11.0"
+  }
+}
