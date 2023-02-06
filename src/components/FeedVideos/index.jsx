@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react'
-import VideoPlayer from '../VideoPlayer/index.jsx'
-import styles from './styles.module.css'
+import { useState, useEffect } from "react";
+import VideoPlayer from "../VideoPlayer/index.jsx";
+import styles from "./styles.module.css";
 //import { getVideos } from '../../services/index.js'
 
-const vid=[{id:1,src:"/vid2.mp4"},{id:2,src:"/vid2.mp4"}]
-
-
-export default function FeedVideos () {
- /*
+export default function FeedVideos() {
+  
   const [videos, setVideos] = useState([])
-  const [error, setError] = useState(null)
+  /*const [error, setError] = useState(null)
 
   useEffect(() => {
     getVideos().then(([error, videos]) => {      
@@ -23,18 +20,26 @@ export default function FeedVideos () {
       <span>{error}</span>
     )
   }
-*/
-  return (
-    vid.map(video => {
+  */
+  useEffect(() => {
+    fetch("https://3speak.tv/apiv2/feeds/@threeshorts-mod").then((response) => response.json())
+    .then((data) => setVideos(data));
+  
+  
+  }, [])
+
+
+  return videos.map((video, i) => {
+    if (i < 3) {
       return (
-        <div key={video.id} className={styles.item}>
+        <div key={video.permlink} className={styles.item}>
           <VideoPlayer
             {...video}
             //avatar={avatar}
             //username={username}
           />
         </div>
-      )
-    })
-  )
+      );
+    }
+  });
 }
