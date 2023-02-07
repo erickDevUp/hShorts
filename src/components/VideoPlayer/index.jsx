@@ -16,7 +16,7 @@ export default function VideoPlayer({ playUrl, author, tags, title, images }) {
   const [playVideo, setPlayVideo] = useState(false);
 
   const handlePlay = () => {
-    console.log(vidRef);
+    console.log(vidRef.current);
   };
 const [hasWindow, setHasWindow] = useState(false);
 
@@ -36,6 +36,7 @@ const [hasWindow, setHasWindow] = useState(false);
         ref={vidRef}
         autoPlay
         muted
+
       />: "not found"}
 
       <i
