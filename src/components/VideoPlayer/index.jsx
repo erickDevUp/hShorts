@@ -36,6 +36,7 @@ const [hasWindow, setHasWindow] = useState(false);
         ref={vidRef}
         playing
         loop
+        onReady={handlePlay}
         muted
       />: "not found"}
 
