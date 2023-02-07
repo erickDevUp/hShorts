@@ -35,6 +35,7 @@ const [hasWindow, setHasWindow] = useState(false);
         height="100%"
         ref={vidRef}
         autoPlay
+        muted
       />: "not found"}
 
       <i
