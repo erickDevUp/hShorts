@@ -4,8 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
        <Head>
-       <link href="./video.css" rel="stylesheet"/>
-       <link href="//vjs.zencdn.net/6.7/video-js.min.css" rel="stylesheet"/>
       </Head>
       <body>
         <Main />

@@ -18,7 +18,6 @@ export default function Home() {
         <FeedVideos />
       </main>
 
-
       <Script
         src="https://unpkg.com/video.js@7.10.2/dist/video.min.js"
         strategy="afterInteractive"
