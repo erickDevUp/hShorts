@@ -7,7 +7,7 @@ import VideoPlayerActions from "./VideoPlayerActions.jsx";
 import VideoDescription from "../VideoDescription/index.jsx";
 //import videosrc from '/vid.mp4'
 import React from "react";
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player/lazy'
 
 
 
