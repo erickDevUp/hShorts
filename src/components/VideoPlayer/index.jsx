@@ -16,7 +16,7 @@ export default function VideoPlayer({ playUrl, author, tags, title, images }) {
   const [playVideo, setPlayVideo] = useState(false);
 
   const handlePlay = () => {
-    console.log(vidRef.current);
+    console.log(vidRef);
   };
 const [hasWindow, setHasWindow] = useState(false);
 
