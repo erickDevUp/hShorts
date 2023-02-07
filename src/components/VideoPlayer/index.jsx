@@ -7,50 +7,48 @@ import VideoPlayerActions from "./VideoPlayerActions.jsx";
 import VideoDescription from "../VideoDescription/index.jsx";
 //import videosrc from '/vid.mp4'
 import React from "react";
+import ReactPlayer from 'react-player/lazy'
 
-const desc =
-  "NextJS is a React-based framework.  beautiful Web applications for different platforms like Windows, Linux, and mac. Approach: To add our …";
-const propsDesc = {
-  albumCover: "post malone - Happy",
-  username: "hyyuu",
-  description: desc,
-  songTitle: "post malone - Happy",
-};
 
-export default function VideoPlayer({ playUrl ,author,tags , title , images}) {
+
+export default function VideoPlayer({ playUrl, author, tags, title, images }) {
   const vidRef = useRef(null);
   const [playVideo, setPlayVideo] = useState(false);
 
   const handlePlay = () => {
-
-    console.log(vidRef)
+    console.log(vidRef);
   };
+const [hasWindow, setHasWindow] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setHasWindow(true);
+    }
+  }, []);
+
   return (
     <div className={styles.wrapper}>
-      <video
-        className={styles.video}
-        id="my-player"
-        muted
-        loop
-        data-setup="{}"
+    {hasWindow ? <ReactPlayer
+        className="react-player"
+        url={playUrl}
+        width="100%"
+        height="100%"
         ref={vidRef}
         autoPlay
-        
-
-      >
-        <source
-          type="application/x-mpegURL"
-          src={playUrl}
-        />
-      </video>
+        muted
+      />: "not found"}
 
       <i
         className={playVideo ? styles.player : styles.hidden}
         onClick={handlePlay}
       />
       <VideoPlayerActions />
-      <VideoDescription albumCover={images.thumbnail} username={author} description={tags} songTitle={title} />
+      <VideoDescription
+        albumCover={images.thumbnail}
+        username={author}
+        description={tags}
+        songTitle={title}
+      />
     </div>
-    
   );
 }
