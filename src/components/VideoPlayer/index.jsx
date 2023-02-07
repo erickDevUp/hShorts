@@ -17,7 +17,7 @@ const propsDesc = {
   songTitle: "post malone - Happy",
 };
 
-export default function VideoPlayer({ playUrl }) {
+export default function VideoPlayer({ playUrl ,author,tags , title , images}) {
   const vidRef = useRef(null);
   const [playVideo, setPlayVideo] = useState(false);
 
@@ -28,13 +28,14 @@ export default function VideoPlayer({ playUrl }) {
   return (
     <div className={styles.wrapper}>
       <video
-        className="video-js "
+        className={styles.video}
         id="my-player"
         muted
+        loop
         data-setup="{}"
         ref={vidRef}
         autoPlay
-        controls
+        
 
       >
         <source
@@ -47,6 +48,9 @@ export default function VideoPlayer({ playUrl }) {
         className={playVideo ? styles.player : styles.hidden}
         onClick={handlePlay}
       />
+      <VideoPlayerActions />
+      <VideoDescription albumCover={images.thumbnail} username={author} description={tags} songTitle={title} />
     </div>
+    
   );
 }

@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 export default function VideoPlayerActions({
   username = "hiyuu",
-  avatar = "https://yt3.googleusercontent.com/ytc/AMLnZu_quXm761MnU-u945BHG7PgaNIQfri5j8id4rWakw=s88-c-k-c0x00ffffff-no-rj",
+  avatar = "https://images.hive.blog/p/2YRZBi4FZVHeQQfitmdxPPgLtSu1HuSyXtTCpRF9N1ZcMUXDB7ptaErLoqtKqbRZkHECtf38a8Ho1fgZ9GtjR3hdnTfAVaUFJqc?width=128&height=128",
   likes = 2041,
   comments = 333,
   shares = 520,

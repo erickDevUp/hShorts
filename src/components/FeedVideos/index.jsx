@@ -35,8 +35,6 @@ export default function FeedVideos() {
         <div key={video.permlink} className={styles.item}>
           <VideoPlayer
             {...video}
-            //avatar={avatar}
-            //username={username}
           />
         </div>
       );
