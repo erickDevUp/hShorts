@@ -20,7 +20,7 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
 
 
   const { muting } = useContext(audioCtx);
-  const { handleMuted } = nearUse(vidRef,id,setPlaying);
+  const { handleMuted } = nearUse(vidRef,id);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

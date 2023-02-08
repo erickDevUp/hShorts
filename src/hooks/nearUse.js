@@ -45,7 +45,7 @@ const getObserver = () =>
   });
 
 
-export default (video,id,setPlaying) => {
+export default (video,id) => {
 
 
   const { muting, setMuting } = useContext(audioCtx);
@@ -62,15 +62,14 @@ export default (video,id,setPlaying) => {
 
         if (isIntersecting) {
           
-          setPlaying(true);
-
+          current.playing =true
           //mutin in the start
           if (id == 0) {
-            setMuting(true);
+            current.playing = true
           } else setMuting(false);
         } else {
           
-          setPlaying(false);
+          current.playing =false 
           
           setMuting(true);
         }
