@@ -1,10 +1,12 @@
 import { AudioCtx } from "@/context/audioCtx.jsx";
+import { AudioCtx } from "@/context/audioCtx.jsx";
 import { useState, useEffect } from "react";
 import VideoPlayer from "../VideoPlayer/index.jsx";
 import styles from "./styles.module.css";
 //import { getVideos } from '../../services/index.js'
 
 export default function FeedVideos() {
+  const [videos, setVideos] = useState([]);
   const [videos, setVideos] = useState([]);
   /*const [error, setError] = useState(null)
 
