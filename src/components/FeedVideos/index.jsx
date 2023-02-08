@@ -33,7 +33,7 @@ export default function FeedVideos() {
         if (i < 3) {
           return (
             <div key={video.permlink} className={styles.item}>
-              <VideoPlayer {...video} />
+              <VideoPlayer {...video} id={i} />
             </div>
           );
         }

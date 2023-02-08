@@ -44,9 +44,9 @@ const getObserver = () =>
   });
 
 
-export default (video) => {
+export default (video,id) => {
 
-  //  const [playing, setPlaying] = useState(false);
+    const [playing, setPlaying] = useState(false);
 
   const { muting, setMuting } = useContext(audioCtx);
 
@@ -62,16 +62,16 @@ export default (video) => {
   //      const { current: videoEl } = video;
 
         if (isIntersecting) {
-          //videoEl.play();
-          //setPlaying(true);
+          
+          setPlaying(true);
 
           //mutin in the start
           if (id == 0) {
             setMuting(true);
           } else setMuting(false);
         } else {
-          //  videoEl.pause();
-          // setPlaying(false);
+          
+          setPlaying(false);
           
           setMuting(true);
         }
@@ -85,7 +85,7 @@ export default (video) => {
 
   const handlePlay = () => {
     const { current: videoEl } = video;
-    playing ? videoEl.pause() : videoEl.play();
+    playing ? videoEl.playing =false : videoEl.playing=true;
 
     setPlaying(!playing);
   };
@@ -99,6 +99,6 @@ export default (video) => {
   };
 
   return {
-    handleMuted,
+    handleMuted,handlePlay,playing
   };
 }

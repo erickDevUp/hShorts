@@ -11,20 +11,22 @@ import ReactPlayer from "react-player/lazy";
 import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
 
-export default function VideoPlayer({ playUrl, author, tags, title, images }) {
+export default function VideoPlayer({ playUrl, author, tags, title, images},id) {
   const vidRef = useRef(null);
   const [hasWindow, setHasWindow] = useState(false);
 
 
 
-  const { muting, setMuting } = useContext(audioCtx);
+  const { muting } = useContext(audioCtx);
+  const { handleMuted,handlePlay,playing } = nearUse(vidRef,id);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
     }
   }, []);
-  const { handleMuted } = nearUse(vidRef);
+
+
   return (
     <div className={styles.wrapper}>
       {hasWindow ? (
@@ -37,14 +39,16 @@ export default function VideoPlayer({ playUrl, author, tags, title, images }) {
           playing
           loop
           muted
+          onClick={handlePlay}
+          
         />
       ) : (
         "not found"
       )}
 
       <i
-       // className={playVideo ? styles.player : styles.hidden}
-       // onClick={handlePlay}
+       className={playing ? styles.player : styles.hidden}
+       onClick={handlePlay}
       />
       <i
         className={muting ? styles.audioMuted : styles.audio}
