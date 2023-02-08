@@ -55,7 +55,7 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
       )}
 
       <i
-       className={playing ? styles.player : styles.hidden}
+       className={playing ? styles.hidden : styles.player}
        onClick={handlePlay}
       />
       <i
