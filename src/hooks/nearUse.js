@@ -61,7 +61,7 @@ export default (video,id) => {
       current._onIntersect = (observer, isIntersecting) => {
 
         if (isIntersecting) {
-          
+          console.log(current);
           setPlaying(true);
 
           //mutin in the start
