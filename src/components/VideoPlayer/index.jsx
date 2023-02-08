@@ -36,9 +36,9 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
           width="100%"
           height="100%"
           ref={vidRef}
-          playing
+          playing={playing}
           loop
-          muted
+          muted={muting}
           onClick={handlePlay}
           
         />
