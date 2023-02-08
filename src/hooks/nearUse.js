@@ -47,7 +47,7 @@ const getObserver = () =>
 
 export default (video,id) => {
 
-
+  const [playing, setPlaying] = useState(true);
   const { muting, setMuting } = useContext(audioCtx);
 
   useEffect(
@@ -62,14 +62,15 @@ export default (video,id) => {
 
         if (isIntersecting) {
           
-          current.playing =true
+          setPlaying(true);
+
           //mutin in the start
           if (id == 0) {
-            current.playing = true
+            setMuting(true);
           } else setMuting(false);
         } else {
           
-          current.playing =false 
+          setPlaying(false);
           
           setMuting(true);
         }
@@ -92,6 +93,6 @@ export default (video,id) => {
   };
 
   return {
-    handleMuted
+    handleMuted,playing,setPlaying
   };
 }
