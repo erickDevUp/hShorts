@@ -59,6 +59,36 @@
   align-items: center;
 }
 
+.audio {
+  background-color: transparent;
+  background-image: url("../../assets/audio.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  height: 25px;
+  inset: 0;
+  margin: 20px;
+  position: absolute;
+  width: 25px;
+  z-index: 999;
+}
+.audioMuted{  
+  background-color: transparent;
+  background-image: url("../../assets/muted.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  height: 25px;
+  inset: 0;
+  margin: 20px;
+  position: absolute;
+  width: 25px;
+  z-index: 999;
+}
+
+
 .user {
   display: flex;
   justify-content: center;
