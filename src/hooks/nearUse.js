@@ -45,9 +45,8 @@ const getObserver = () =>
   });
 
 
-export default (video,id) => {
+export default (video,id,setPlaying) => {
 
-    const [playing, setPlaying] = useState(false);
 
   const { muting, setMuting } = useContext(audioCtx);
 
@@ -60,7 +59,6 @@ export default (video,id) => {
 
       // mutate the current target to add a method to be executed when intersecting
       current._onIntersect = (observer, isIntersecting) => {
-  //      const { current: videoEl } = video;
 
         if (isIntersecting) {
           
@@ -84,12 +82,7 @@ export default (video,id) => {
     [video]
   );
 
-  const handlePlay = () => {
-    const { current: videoEl } = video;
-    playing ? videoEl.playing =false : videoEl.playing=true;
 
-    setPlaying(!playing);
-  };
 
 
   const handleMuted = () => {
@@ -100,6 +93,6 @@ export default (video,id) => {
   };
 
   return {
-    handleMuted,handlePlay,playing
+    handleMuted
   };
 }

@@ -14,11 +14,13 @@ import audioCtx from "@/context/audioCtx";
 export default function VideoPlayer({ playUrl, author, tags, title, images},id) {
   const vidRef = useRef(null);
   const [hasWindow, setHasWindow] = useState(false);
+  
+  const [playing, setPlaying] = useState(true);
 
 
 
   const { muting } = useContext(audioCtx);
-  const { handleMuted,handlePlay,playing } = nearUse(vidRef,id);
+  const { handleMuted } = nearUse(vidRef,id,setPlaying);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -26,6 +28,12 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
     }
   }, []);
 
+  const handlePlay = () => {
+    const { current: videoEl } = video;
+    playing ? videoEl.playing =false : videoEl.playing=true;
+
+    setPlaying(!playing);
+  };
 
   return (
     <div className={styles.wrapper}>
