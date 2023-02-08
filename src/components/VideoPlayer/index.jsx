@@ -33,8 +33,10 @@ const [hasWindow, setHasWindow] = useState(false);
         url={playUrl}
         width="100%"
         height="100%"
-        ref={vidRef}
-        autoPlay
+        ref={vidRef} 
+        playing
+        loop
+        muted
       />: "not found"}
 
       <i
