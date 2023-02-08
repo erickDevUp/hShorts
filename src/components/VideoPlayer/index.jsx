@@ -29,7 +29,7 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
   }, []);
 
   const handlePlay = () => {
-    const { current: videoEl } = video;
+    const { current: videoEl } = vidRef;
     playing ? videoEl.playing =false : videoEl.playing=true;
 
     setPlaying(!playing);
