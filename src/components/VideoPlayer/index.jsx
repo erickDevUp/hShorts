@@ -33,10 +33,9 @@ const [hasWindow, setHasWindow] = useState(false);
         url={playUrl}
         width="100%"
         height="100%"
-        ref={vidRef}
+        ref={vidRef} 
         playing
         loop
-        onReady={handlePlay}
         muted
       />: "not found"}
 
