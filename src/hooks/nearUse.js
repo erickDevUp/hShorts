@@ -47,7 +47,7 @@ const getObserver = () =>
 
 export default (video,id) => {
 
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const { muting, setMuting } = useContext(audioCtx);
 
   useEffect(
