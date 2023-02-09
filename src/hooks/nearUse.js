@@ -75,9 +75,6 @@ export default (video,id) => {
           setMuting(true);
         }
       };
-
-      // clean observed element when unmounted
-      return () => (current._isSubscribed = false);
     },
     [video]
   );
