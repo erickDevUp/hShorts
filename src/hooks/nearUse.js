@@ -97,6 +97,6 @@ export default (video,id) => {
 
 
   return {
-    handleMuted,playing
+    handleMuted,playing,handlePlay
   };
 }
