@@ -20,20 +20,13 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
 
 
   const { muting } = useContext(audioCtx);
-  const { handleMuted,playing,setPlaying } = nearUse(vidRef,id);
+  const { handleMuted,handlePlay,playing } = nearUse(vidRef,id);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
     }
   }, []);
-
-  const handlePlay = () => {
-    const { current: videoEl } = vidRef;
-    playing ? videoEl.playing =true : videoEl.playing=false;
-
-    setPlaying(!playing);
-  };
 
   return (
     <div className={styles.wrapper}>

@@ -88,8 +88,15 @@ export default (video,id) => {
 
     setMuting(!muting);
   };
+  const handlePlay = () => {
+    const { current: videoEl } = vidRef;
+    playing ? videoEl.playing =true : videoEl.playing=false;
+
+    setPlaying(!playing);
+  };
+
 
   return {
-    handleMuted,playing,setPlaying
+    handleMuted,playing
   };
 }
