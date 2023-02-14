@@ -11,6 +11,7 @@ import ReactPlayer from "react-player/lazy";
 import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
 import { useInView } from "react-intersection-observer";
+import { Waypoint } from "react-waypoint";
 
 export default function VideoPlayer(
   { playUrl, author, tags, title, images },
@@ -34,7 +35,7 @@ export default function VideoPlayer(
   const handlePlay = () => {
     const { current: videoEl } = vidRef;
     playing ? (videoEl.playing = true) : (videoEl.playing = false);
-console.log("clic");
+    console.log("clic");
     setPlaying(!playing);
   };
 
@@ -47,40 +48,40 @@ console.log("clic");
     console.log("seve");
   }, [isView]);
   return (
-    <div ref={divRef} className={styles.wrapper}>
-      {hasWindow ? (
-        <ReactPlayer
-          className="react-player"
-          url={playUrl}
-          width="100%"
-          height="100%"
-          playing={playing}
-          loop
-          ref={vidRef}
-          muted={muting}
-          onClick={handlePlay}
-          onPlay={() => setPlaying(true) }
-          onPause={() => setPlaying(false) }
-        />
-      ) : (
-        "not found"
-      )}
+    <Waypoint onEnter={()=>setPlaying(true)} onLeave={() => setPlaying(false)}>
+      <div ref={divRef} className={styles.wrapper}>
+        {hasWindow ? (
+          <ReactPlayer
+            className="react-player"
+            url={playUrl}
+            width="100%"
+            height="100%"
+            playing={playing}
+            loop
+            ref={vidRef}
+            muted={muting}
+            onClick={handlePlay}
+          />
+        ) : (
+          "not found"
+        )}
 
-      <i
-        className={playing ? styles.hidden : styles.player}
-        onClick={handlePlay}
-      />
-      <i
-        className={muting ? styles.audioMuted : styles.audio}
-        onClick={handleMuted}
-      />
-      <VideoPlayerActions />
-      <VideoDescription
-        albumCover={images.thumbnail}
-        username={author}
-        description={tags}
-        songTitle={title}
-      />
-    </div>
+        <i
+          className={playing ? styles.hidden : styles.player}
+          onClick={handlePlay}
+        />
+        <i
+          className={muting ? styles.audioMuted : styles.audio}
+          onClick={handleMuted}
+        />
+        <VideoPlayerActions />
+        <VideoDescription
+          albumCover={images.thumbnail}
+          username={author}
+          description={tags}
+          songTitle={title}
+        />
+      </div>
+    </Waypoint>
   );
 }
