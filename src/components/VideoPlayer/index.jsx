@@ -51,14 +51,13 @@ const handlePlay = () => {
 console.log("seve");
   }, [isView]);
   return (
-    <div className={styles.wrapper}>
+    <div  ref={vidRef} className={styles.wrapper}>
       {hasWindow ? (
         <ReactPlayer
           className="react-player"
           url={playUrl}
           width="100%"
           height="100%"
-          ref={vidRef}
           playing={playing}
           loop
           muted={muting}
