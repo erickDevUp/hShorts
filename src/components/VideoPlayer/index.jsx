@@ -39,9 +39,6 @@ export default function VideoPlayer(
       setHasWindow(true);
     }
   }, []);
-  const handleOnProgress=(e)=>{
-    console.log(e);
-  }
   return (
     <Waypoint
       onEnter={() => setPlaying(true)}
@@ -59,7 +56,6 @@ export default function VideoPlayer(
             ref={vidRef}
             muted={muting}
             onClick={handlePlay}
-            onProgress={(e) => handleOnProgress(e)}
           />
           
           <i
