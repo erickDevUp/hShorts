@@ -59,6 +59,8 @@ export default function VideoPlayer(
           ref={vidRef}
           muted={muting}
           onClick={handlePlay}
+          onPlay={() => setPlaying(true) }
+          onPause={() => setPlaying(false) }
         />
       ) : (
         "not found"
