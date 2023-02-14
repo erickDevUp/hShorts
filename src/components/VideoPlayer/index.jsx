@@ -34,6 +34,9 @@ export default function VideoPlayer(
     playing ? (videoEl.playing = true) : (videoEl.playing = false);
     setPlaying(!playing);
   };
+  const handleOnProgress=(e)=>{
+    console.log(e);
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -46,7 +49,7 @@ export default function VideoPlayer(
       <div className={styles.wrapper}>
         {hasWindow ? (
           <ReactPlayer
-            className="react-player"
+            className="react-player" 
             url={playUrl}
             width="100%"
             height="100%"
@@ -55,6 +58,7 @@ export default function VideoPlayer(
             ref={vidRef}
             muted={muting}
             onClick={handlePlay}
+            onProgress={(e) => handleOnProgress(e)}
           />
         ) : (
           "not found"
