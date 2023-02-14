@@ -19,6 +19,7 @@ export default function VideoPlayer(
   const [hasWindow, setHasWindow] = useState(false);
   const vidRef = useRef(null);
 
+
   const { muting, setMuting } = useContext(audioCtx);
 
   let [playing, setPlaying] = useState(false);
@@ -39,13 +40,11 @@ export default function VideoPlayer(
       setHasWindow(true);
     }
   }, []);
+
   return (
-    <Waypoint
-      onEnter={() => setPlaying(true)}
-      onLeave={() => setPlaying(false)}
-    >
-      {hasWindow ? (
-        <div className={styles.wrapper}>
+    <Waypoint onEnter={()=>setPlaying(true)} onLeave={() => setPlaying(false)}>
+      <div className={styles.wrapper}>
+        {hasWindow ? (
           <ReactPlayer
             className="react-player"
             url={playUrl}
@@ -57,26 +56,26 @@ export default function VideoPlayer(
             muted={muting}
             onClick={handlePlay}
           />
-          
-          <i
-            className={playing ? styles.hidden : styles.player}
-            onClick={handlePlay}
-          />
-          <i
-            className={muting ? styles.audioMuted : styles.audio}
-            onClick={handleMuted}
-          />
-          <VideoPlayerActions />
-          <VideoDescription
-            albumCover={images.thumbnail}
-            username={author}
-            description={tags}
-            songTitle={title}
-          />
-        </div>
-      ) : (
-        "not found"
-      )}
+        ) : (
+          "not found"
+        )}
+
+        <i
+          className={playing ? styles.hidden : styles.player}
+          onClick={handlePlay}
+        />
+        <i
+          className={muting ? styles.audioMuted : styles.audio}
+          onClick={handleMuted}
+        />
+        <VideoPlayerActions />
+        <VideoDescription
+          albumCover={images.thumbnail}
+          username={author}
+          description={tags}
+          songTitle={title}
+        />
+      </div>
     </Waypoint>
   );
 }
