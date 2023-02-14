@@ -34,7 +34,7 @@ export default function VideoPlayer(
   const handlePlay = () => {
     const { current: videoEl } = vidRef;
     playing ? (videoEl.playing = true) : (videoEl.playing = false);
-
+console.log("clic");
     setPlaying(!playing);
   };
 
