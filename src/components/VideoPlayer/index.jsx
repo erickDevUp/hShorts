@@ -15,11 +15,11 @@ import { useInView } from "react-intersection-observer";
 export default function VideoPlayer({ playUrl, author, tags, title, images},id) {
 
   const [hasWindow, setHasWindow] = useState(false);
-  
+  const vidRef = useRef(null);
 
-const { ref:vidRef, inView:isView, entry } = useInView();
+const { ref:divRef, inView:isView, entry } = useInView();
 
-  const { muting } = useContext(audioCtx);
+  const { muting,setMuting } = useContext(audioCtx);
 
 
 
@@ -28,14 +28,14 @@ const { ref:vidRef, inView:isView, entry } = useInView();
 
 
  const handleMuted = () => {
- // const { current: videoEl } = video;
- // muting ? (videoEl.muted = false) : ( videoEl.muted = true);
+  const { current: videoEl } = vidRef;
+  muting ? (videoEl.muted = false) : ( videoEl.muted = true);
 
   setMuting(!muting);
 };
 const handlePlay = () => {
-  //const { current: videoEl } = video;
-  //playing ? videoEl.playing =true : videoEl.playing=false;
+  const { current: videoEl } = vidRef;
+  playing ? videoEl.playing =true : videoEl.playing=false;
 
   setPlaying(!playing);
 };
@@ -51,7 +51,7 @@ const handlePlay = () => {
 console.log("seve");
   }, [isView]);
   return (
-    <div  ref={vidRef} className={styles.wrapper}>
+    <div  ref={divRef} className={styles.wrapper}>
       {hasWindow ? (
         <ReactPlayer
           className="react-player"
@@ -60,6 +60,7 @@ console.log("seve");
           height="100%"
           playing={playing}
           loop
+          ref={vidRef}
           muted={muting}
           onClick={handlePlay}
           
