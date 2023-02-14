@@ -10,7 +10,6 @@ import React from "react";
 import ReactPlayer from "react-player/lazy";
 import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
-import { useInView } from "react-intersection-observer";
 import { Waypoint } from "react-waypoint";
 
 export default function VideoPlayer(
@@ -20,8 +19,6 @@ export default function VideoPlayer(
   const [hasWindow, setHasWindow] = useState(false);
   const vidRef = useRef(null);
 
-  const { ref: divRef, inView: isView, entry } = useInView();
-
   const { muting, setMuting } = useContext(audioCtx);
 
   let [playing, setPlaying] = useState(false);
@@ -29,13 +26,11 @@ export default function VideoPlayer(
   const handleMuted = () => {
     const { current: videoEl } = vidRef;
     muting ? (videoEl.muted = false) : (videoEl.muted = true);
-
     setMuting(!muting);
   };
   const handlePlay = () => {
     const { current: videoEl } = vidRef;
     playing ? (videoEl.playing = true) : (videoEl.playing = false);
-    console.log("clic");
     setPlaying(!playing);
   };
 
@@ -44,13 +39,16 @@ export default function VideoPlayer(
       setHasWindow(true);
     }
   }, []);
-  useEffect(() => {
-    console.log("seve");
-  }, [isView]);
+  const handleOnProgress=(e)=>{
+    console.log(e);
+  }
   return (
-    <Waypoint onEnter={()=>setPlaying(true)} onLeave={() => setPlaying(false)}>
-      <div ref={divRef} className={styles.wrapper}>
-        {hasWindow ? (
+    <Waypoint
+      onEnter={() => setPlaying(true)}
+      onLeave={() => setPlaying(false)}
+    >
+      {hasWindow ? (
+        <div className={styles.wrapper}>
           <ReactPlayer
             className="react-player"
             url={playUrl}
@@ -61,27 +59,28 @@ export default function VideoPlayer(
             ref={vidRef}
             muted={muting}
             onClick={handlePlay}
+            onProgress={(e) => handleOnProgress(e)}
           />
-        ) : (
-          "not found"
-        )}
-
-        <i
-          className={playing ? styles.hidden : styles.player}
-          onClick={handlePlay}
-        />
-        <i
-          className={muting ? styles.audioMuted : styles.audio}
-          onClick={handleMuted}
-        />
-        <VideoPlayerActions />
-        <VideoDescription
-          albumCover={images.thumbnail}
-          username={author}
-          description={tags}
-          songTitle={title}
-        />
-      </div>
+          
+          <i
+            className={playing ? styles.hidden : styles.player}
+            onClick={handlePlay}
+          />
+          <i
+            className={muting ? styles.audioMuted : styles.audio}
+            onClick={handleMuted}
+          />
+          <VideoPlayerActions />
+          <VideoDescription
+            albumCover={images.thumbnail}
+            username={author}
+            description={tags}
+            songTitle={title}
+          />
+        </div>
+      ) : (
+        "not found"
+      )}
     </Waypoint>
   );
 }
