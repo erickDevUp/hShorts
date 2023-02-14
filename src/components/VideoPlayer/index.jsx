@@ -20,7 +20,27 @@ export default function VideoPlayer({ playUrl, author, tags, title, images},id) 
 const { ref:vidRef, inView:isView, entry } = useInView();
 
   const { muting } = useContext(audioCtx);
- const { handleMuted,playing,handlePlay } = nearUse(vidRef,id);
+
+
+
+  const [playing, setPlaying] = useState(false);
+
+
+
+ const handleMuted = () => {
+ // const { current: videoEl } = video;
+ // muting ? (videoEl.muted = false) : ( videoEl.muted = true);
+
+  setMuting(!muting);
+};
+const handlePlay = () => {
+  //const { current: videoEl } = video;
+  //playing ? videoEl.playing =true : videoEl.playing=false;
+
+  setPlaying(!playing);
+};
+
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {

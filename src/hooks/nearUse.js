@@ -47,7 +47,6 @@ const getObserver = () =>
 
 export default (video,id) => {
 
-  const [playing, setPlaying] = useState(false);
   const { muting, setMuting } = useContext(audioCtx);
 
   useEffect(
@@ -79,21 +78,6 @@ export default (video,id) => {
     [video]
   );
 
-
-
-
-  const handleMuted = () => {
-    const { current: videoEl } = video;
-    muting ? (videoEl.muted = false) : ( videoEl.muted = true);
-
-    setMuting(!muting);
-  };
-  const handlePlay = () => {
-    const { current: videoEl } = video;
-    playing ? videoEl.playing =true : videoEl.playing=false;
-
-    setPlaying(!playing);
-  };
 
 
   return {
