@@ -23,7 +23,7 @@ export default function VideoPlayer(
 
   const { muting, setMuting } = useContext(audioCtx);
 
-  const [playing, setPlaying] = useState(false);
+  let [playing, setPlaying] = useState(false);
 
   const handleMuted = () => {
     const { current: videoEl } = vidRef;
