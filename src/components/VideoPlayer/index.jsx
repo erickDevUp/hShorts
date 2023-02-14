@@ -10,23 +10,26 @@ import React from "react";
 import ReactPlayer from "react-player/lazy";
 import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
+import { useInView } from "react-intersection-observer";
 
 export default function VideoPlayer({ playUrl, author, tags, title, images},id) {
-  const vidRef = useRef(null);
+
   const [hasWindow, setHasWindow] = useState(false);
   
 
-
+const { ref:vidRef, inView:isView, entry } = useInView();
 
   const { muting } = useContext(audioCtx);
-  const { handleMuted,playing,handlePlay } = nearUse(vidRef,id);
+ // const { handleMuted,playing,handlePlay } = nearUse(vidRef,id);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
     }
   }, []);
-
+  useEffect(() => {
+console.log("seve");
+  }, [isView]);
   return (
     <div className={styles.wrapper}>
       {hasWindow ? (
