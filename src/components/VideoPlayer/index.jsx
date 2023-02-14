@@ -12,35 +12,31 @@ import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
 import { useInView } from "react-intersection-observer";
 
-export default function VideoPlayer({ playUrl, author, tags, title, images},id) {
-
+export default function VideoPlayer(
+  { playUrl, author, tags, title, images },
+  id
+) {
   const [hasWindow, setHasWindow] = useState(false);
   const vidRef = useRef(null);
 
-const { ref:divRef, inView:isView, entry } = useInView();
+  const { ref: divRef, inView: isView, entry } = useInView();
 
-  const { muting,setMuting } = useContext(audioCtx);
-
-
+  const { muting, setMuting } = useContext(audioCtx);
 
   const [playing, setPlaying] = useState(false);
 
+  const handleMuted = () => {
+    const { current: videoEl } = vidRef;
+    muting ? (videoEl.muted = false) : (videoEl.muted = true);
 
+    setMuting(!muting);
+  };
+  const handlePlay = () => {
+    const { current: videoEl } = vidRef;
+    playing ? (videoEl.playing = true) : (videoEl.playing = false);
 
- const handleMuted = () => {
-  const { current: videoEl } = vidRef;
-  muting ? (videoEl.muted = false) : ( videoEl.muted = true);
-
-  setMuting(!muting);
-};
-const handlePlay = () => {
-  const { current: videoEl } = vidRef;
-  playing ? videoEl.playing =true : videoEl.playing=false;
-
-  setPlaying(!playing);
-};
-
-
+    setPlaying(!playing);
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -48,10 +44,10 @@ const handlePlay = () => {
     }
   }, []);
   useEffect(() => {
-console.log("seve");
+    console.log("seve");
   }, [isView]);
   return (
-    <div  ref={divRef} className={styles.wrapper}>
+    <div ref={divRef} className={styles.wrapper}>
       {hasWindow ? (
         <ReactPlayer
           className="react-player"
@@ -63,15 +59,14 @@ console.log("seve");
           ref={vidRef}
           muted={muting}
           onClick={handlePlay}
-          
         />
       ) : (
         "not found"
       )}
 
       <i
-       className={playing ? styles.hidden : styles.player}
-       onClick={handlePlay}
+        className={playing ? styles.hidden : styles.player}
+        onClick={handlePlay}
       />
       <i
         className={muting ? styles.audioMuted : styles.audio}
