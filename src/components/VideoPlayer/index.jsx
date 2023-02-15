@@ -22,7 +22,7 @@ export default function VideoPlayer(
 
   const { muting, setMuting } = useContext(audioCtx);
 
-  let [playing, setPlaying] = useState(false);
+  const [play, setPlaying] = useState(false);
 
   const handleMuted = () => {
     const { current: videoEl } = vidRef;
@@ -31,8 +31,8 @@ export default function VideoPlayer(
   };
   const handlePlay = () => {
     const { current: videoEl } = vidRef;
-    playing ? (videoEl.playing = true) : (videoEl.playing = false);
-    setPlaying(!playing);
+    play ? (videoEl.playing = true) : (videoEl.playing = false);
+    setPlaying(!play);
   };
 
   useEffect(() => {
@@ -50,12 +50,10 @@ export default function VideoPlayer(
             url={playUrl}
             width="100%"
             height="100%"
-            playing={playing}
+            playing={play}
             loop
             ref={vidRef}
             muted={muting}
-            onClick={()=>setPlaying(!playing)}
-            onTouchStart={()=>setPlaying(!playing)}
           />
         ) : (
           "not found"
