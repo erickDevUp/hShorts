@@ -34,9 +34,6 @@ export default function VideoPlayer(
     playing ? (videoEl.playing = true) : (videoEl.playing = false);
     setPlaying(!playing);
   };
-  const handleOnProgress=(e)=>{
-    console.log(e);
-  }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -57,8 +54,8 @@ export default function VideoPlayer(
             loop
             ref={vidRef}
             muted={muting}
-            onClick={handlePlay}
-            onProgress={(e) => handleOnProgress(e)}
+            onClick={()=>setPlaying(!playing)}
+            onTouchStart={()=>setPlaying(!playing)}
           />
         ) : (
           "not found"
