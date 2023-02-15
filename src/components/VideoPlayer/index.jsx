@@ -61,7 +61,7 @@ export default function VideoPlayer(
 
         <i
           className={playing ? styles.hidden : styles.player}
-          onClick={handlePlay}
+          onClick={()=>setPlaying(!play)}
         />
         <i
           className={muting ? styles.audioMuted : styles.audio}
