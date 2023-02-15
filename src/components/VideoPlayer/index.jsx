@@ -60,7 +60,7 @@ export default function VideoPlayer(
         )}
 
         <i
-          className={playing ? styles.hidden : styles.player}
+          className={play ? styles.hidden : styles.player}
           onClick={()=>setPlaying(!play)}
         />
         <i
