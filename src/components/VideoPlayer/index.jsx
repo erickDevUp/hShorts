@@ -2,11 +2,12 @@ import clsx from "clsx";
 import { Suspense, use, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import VideoPlayerActions from "./VideoPlayerActions.jsx";
-const ReactPlayer = React.lazy(() => import("react-player/lazy")); 
+
 //import useNearScreen from '../../hooks/nearUse'
 import VideoDescription from "../VideoDescription/index.jsx";
 //import videosrc from '/vid.mp4'
 import React from "react";
+import ReactPlayer from "react-player/lazy";
 import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
 import { Waypoint } from "react-waypoint";
