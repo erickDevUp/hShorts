@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { use, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, use, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import VideoPlayerActions from "./VideoPlayerActions.jsx";
 
