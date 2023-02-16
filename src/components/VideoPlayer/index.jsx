@@ -11,6 +11,7 @@ import ReactPlayer from "react-player/lazy";
 import nearUse from "@/hooks/nearUse";
 import audioCtx from "@/context/audioCtx";
 import { Waypoint } from "react-waypoint";
+import Spinner from "@/assets/spinner/spinner";
 
 export default function VideoPlayer(
   { playUrl, author, tags, title, images },
@@ -47,16 +48,16 @@ export default function VideoPlayer(
     >
       <div className={styles.wrapper}>
         {hasWindow ? (
+          <Suspense fallback={<Spinner />}>
             <ReactPlayer
-              className="react-player"
+              className={styles.video}
               url={playUrl}
-              width="100%"
-              height="fit-content"
               playing={play}
               loop
               ref={vidRef}
               muted={muting}
             />
+          </Suspense>
         ) : (
           "not found"
         )}
