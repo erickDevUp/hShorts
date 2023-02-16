@@ -29,13 +29,13 @@
   background-image: url("../../assets/player.png");
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 65px;
   border: 0;
-  height: 62px;
+  height: 100vh;
   inset: 0;
   margin: auto;
   position: absolute;
-  width: 62px;
+  width: 100%;
 }
 
 .hidden {

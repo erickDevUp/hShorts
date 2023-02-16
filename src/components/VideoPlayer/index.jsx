@@ -19,7 +19,6 @@ export default function VideoPlayer(
   const [hasWindow, setHasWindow] = useState(false);
   const vidRef = useRef(null);
 
-
   const { muting, setMuting } = useContext(audioCtx);
 
   const [play, setPlaying] = useState(false);
@@ -42,26 +41,29 @@ export default function VideoPlayer(
   }, []);
 
   return (
-    <Waypoint onEnter={()=>setPlaying(true)} onLeave={() => setPlaying(false)}>
+    <Waypoint
+      onEnter={() => setPlaying(true)}
+      onLeave={() => setPlaying(false)}
+    >
       <div className={styles.wrapper}>
         {hasWindow ? (
-          <ReactPlayer
-            className="react-player" 
-            url={playUrl}
-            width="100%"
-            height="100%"
-            playing={play}
-            loop
-            ref={vidRef}
-            muted={muting}
-          />
+            <ReactPlayer
+              className="react-player"
+              url={playUrl}
+              width="100%"
+              height="fit-content"
+              playing={play}
+              loop
+              ref={vidRef}
+              muted={muting}
+            />
         ) : (
           "not found"
         )}
 
         <i
           className={play ? styles.hidden : styles.player}
-          onClick={()=>setPlaying(!play)}
+          onClick={() => setPlaying(!play)}
         />
         <i
           className={muting ? styles.audioMuted : styles.audio}
