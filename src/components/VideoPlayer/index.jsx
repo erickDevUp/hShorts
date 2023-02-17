@@ -53,7 +53,7 @@ export default function VideoPlayer(
               className="react-player"
               url={playUrl}
               width="100%"
-              height="fit-content"
+              height="100vh"
               playing={play}
               loop
               ref={vidRef}
