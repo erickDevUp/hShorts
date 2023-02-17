@@ -1,13 +1,5 @@
 import clsx from "clsx";
-import {
-  Suspense,
-  use,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { Suspense, use, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import VideoPlayerActions from "./VideoPlayerActions.jsx";
 
@@ -50,11 +42,11 @@ export default function VideoPlayer(
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <Waypoint
-        onEnter={() => setPlaying(true)}
-        onLeave={() => setPlaying(false)}
-      >
+    <Waypoint
+      onEnter={() => setPlaying(true)}
+      onLeave={() => setPlaying(false)}
+    >
+      <div className={styles.wrapper}>
         {hasWindow ? (
           <Suspense fallback={<Spinner />}>
             <ReactPlayer
@@ -87,7 +79,7 @@ export default function VideoPlayer(
           description={tags}
           songTitle={title}
         />
-      </Waypoint>
-    </div>
+      </div>
+    </Waypoint>
   );
 }
